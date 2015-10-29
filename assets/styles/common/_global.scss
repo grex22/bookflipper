@@ -1,1 +1,56 @@
+body{
+  font-family:rubikregular;
+  font-size:15px;
+}
 
+h1,h2,h3,h4,h5,h6{
+  font-family:rubikbold;
+}
+
+.btn{
+  border-radius:0;
+  border:none;
+  font-size:22px;
+  padding:7px 28px;
+}
+
+.btn-primary{
+  text-transform:uppercase;
+  font-family:rubikbold;
+  background-color:$black;
+  em{font-family:rubikblack_italic;color:$green;}
+  @include transition(.3s background-color);
+  &:hover{
+    background-color:darken($green,20);
+  }
+}
+
+.btn-lg{
+  font-size:40px;
+  padding:15px 35px;
+}
+
+section.masthead{
+  background-color:$green;
+  color:white;
+  h1{
+    text-transform:uppercase;
+    text-shadow:0px 2px 1px rgba(0,0,0,.4);
+    font-size:44px;
+  }
+  h2{
+    text-transform:uppercase;
+    font-family:rubiklight;
+    text-shadow:0px 2px 1px rgba(0,0,0,.4);
+    font-size:23px;
+  }
+}
+
+section{
+  &.home_section{
+    padding:45px 0;
+  }
+  &.alt{
+    background-color:$light-gray;
+  }
+}
