@@ -2,12 +2,14 @@
   "dependencies": {
     "main.js": {
       "files": [
+        "scripts/**/*",
         "scripts/main.js"
       ],
       "main": true
     },
     "main.css": {
       "files": [
+        "styles/**/*",
         "styles/main.scss"
       ],
       "main": true
