@@ -13,3 +13,55 @@
   @extend .btn;
   @extend .btn-default;
 }
+//Gravity Forms Overrides
+.gform_confirmation_message{
+  text-align:center;
+  font-size:19px;
+}
+#gform_wrapper_1{
+  label{display:none;}
+}
+
+.gform_wrapper{
+
+  max-width:800px;
+  margin:20px auto;
+  .gform_footer{
+    text-align: center;
+    margin-top:0;
+    padding-top:5px;
+    .gform_button{
+      margin:5px auto;
+      padding: 8px 45px!important;
+    }
+  }
+
+  li.gfield{
+    margin-bottom:.6em;
+  }
+
+  input,select,textarea{
+    padding: .421em .4em!important;
+    font-size: 18px!important;
+  }
+
+  ::-webkit-input-placeholder {
+    font-family:rubikbold;
+    color:#bbb;
+  }
+
+  :-moz-placeholder { /* Firefox 18- */
+    font-family:rubikbold;
+    color:#bbb;
+  }
+
+  ::-moz-placeholder {  /* Firefox 19+ */
+    font-family:rubikbold;
+    color:#bbb;
+  }
+
+  :-ms-input-placeholder {
+    font-family:rubikbold;
+    color:#bbb;
+  }
+}

@@ -10,9 +10,10 @@ require_once( "../../../../wp-load.php" );
 $current_user = wp_get_current_user();
 if(!$current_user){
   //Not logged in!
-  //Need to add in some sort of permission check here too once permission plugin is worked out
   return false;
+  die();
 }
+//Need to add in some sort of permission check here too once permission plugin is worked out
 
 
 
@@ -47,6 +48,10 @@ $sort = isset($_GET['sort']) ? mysqli_real_escape_string($conn, $_GET['sort']) :
 $offset = (isset($_GET['offset']) && is_numeric($_GET['offset'])) ? $_GET['offset'] : 0;
 $limit = (isset($_GET['limit']) && is_numeric($_GET['limit'])) ? $_GET['limit'] : 20;
 
+//known textbooks search
+$textbook = (isset($_GET['is_textbook']) && is_numeric($_GET['is_textbook'])) ? $_GET['is_textbook'] : false;
+
+
 if(isset($_GET['used_price_max'])) $used_price_max = numerify(mysqli_real_escape_string($conn, $_GET['used_price_max']));
 if(isset($_GET['used_price_min'])) $used_price_min = numerify(mysqli_real_escape_string($conn, $_GET['used_price_min']));
 if(isset($_GET['new_price_max'])) $new_price_max = numerify(mysqli_real_escape_string($conn, $_GET['new_price_max']));
@@ -74,6 +79,11 @@ if($search){
 }else{
   $query .= "WHERE 1 = 1 "; //gets all records, gets our first 'where' clause in there
 }
+
+if(isset($textbook) && $textbook == 1){
+  $query .= "AND is_textbook = 1 ";
+}
+
 if($used_price_max || $used_price_min){
   if($used_price_max && $used_price_min){
     $query .= "AND used_price BETWEEN $used_price_min and $used_price_max ";
@@ -137,22 +147,22 @@ if($publication_date_max || $publication_date_min){
     $query .= "AND publication_date >= $publication_date_min ";
   }
 }
-$query .= " 
+$query .= "
   ORDER BY $sort $order
   LIMIT $limit OFFSET $offset";
 
 if ($res = $conn->query($query)) {
-  
+
   $totalrows = $conn->query("SELECT FOUND_ROWS()");
   $json_array = array("total"=>$totalrows->fetch_row(),"rows"=>array());
   while ($row = $res->fetch_assoc()) {
     $json_array['rows'][] = $row;
   }
-  
+
   //Increment our user's search count for reporting
   $old = intval(get_user_meta($current_user->ID,'search_count',true));
   update_user_meta($current_user->ID, 'search_count', $old+1);
-  
+
 }
 if($json_array){
   echo json_encode($json_array);

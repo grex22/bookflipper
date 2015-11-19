@@ -105,7 +105,7 @@ section.masthead{
   max-width:590px;
   text-align:center;
   margin:0 auto 5px;
-  
+
   input[type=text],
   input[type=password]{
     background:transparent;
@@ -179,8 +179,11 @@ table.results_table{
   max-width:100%;
   width:360px;
 }
-a[rel=popover] i.glyphicon.glyphicon-eye-open{
+a[rel=popover] i.glyphicon{
   color:#AAA;
+  font-size: 16px;
+  vertical-align: bottom;
+  margin: 0 2px 0 0;
 }
 .fixed-table-container{
   border:none;
@@ -209,7 +212,7 @@ a[rel=popover] i.glyphicon.glyphicon-eye-open{
     text-align:center;
     background:transparent;
     &:first-child{border:none;}
-    
+
     .input-lg{
       text-align:center;
       width:80%;
@@ -219,7 +222,7 @@ a[rel=popover] i.glyphicon.glyphicon-eye-open{
       margin-bottom:15px;
       font-size:21px;
     }
-    
+
     &.slider_th{
       input{
         width:90px;
@@ -242,7 +245,7 @@ a[rel=popover] i.glyphicon.glyphicon-eye-open{
     }
   }
   .filter_slider{
-    height:250px;
+    height:180px;
     margin:19px auto 25px;
     .noUi-connect{
       background:#c8d694;
@@ -265,6 +268,12 @@ a[rel=popover] i.glyphicon.glyphicon-eye-open{
     &:before{display:none}
     &:after{display:none}
   }
+}
+
+#calc_instructs{
+  position: absolute;
+  right: 31px;
+  top:auto;
 }
 
 /* Utility */
